@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
-import TaskList from './assets/pages/TaskList'
-import AddTask from './assets/pages/AddTask'
+import TaskListPage from './assets/pages/TaskListPage.jsx'
+import AddTaskPage from './assets/pages/AddTaskPage.jsx'
 import Navbar from './assets/components/NavBar'
 import { useContext } from 'react'
 import { ContextProvider, useGlobal, GlobalContext } from "./contexts/GlobalContext.jsx";
@@ -14,8 +14,8 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/" element={<TaskList />} />
-          <Route path="/new" element={<AddTask />}/>
+          <Route path="/" element={<TaskListPage />} />
+          <Route path="/new" element={<AddTaskPage />}/>
         </Routes>
       </BrowserRouter>
     </ContextProvider>

@@ -3,3 +3,20 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.container {
+width: 800px;
+}
+
+.card{
+  height: 80px;
+  border: 1px solid black;
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+
+span{
+  margin-left: 10px;
+  min-width: 200px;
+}

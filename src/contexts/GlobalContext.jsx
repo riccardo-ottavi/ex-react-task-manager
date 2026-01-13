@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useContext } from "react";
 import axios from "axios";
 
 const GlobalContext = createContext();
@@ -7,7 +7,7 @@ function ContextProvider({ children }){
     const [tasks, setTasks] = useState([])
 
     async function getTasks(){
-        const response = await axios.get(`${import.meta.env.VITE__API_URL}/tasks`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/tasks`);
         console.log(response.data)
         setTasks(response.data);
     }
@@ -25,8 +25,7 @@ function ContextProvider({ children }){
 }
 
 const useGlobal = () => {
-    const context = useGlobal(GlobalContext);
-    return context;
+  return useContext(GlobalContext);
 };
 
 export { ContextProvider, useGlobal, GlobalContext }
