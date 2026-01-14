@@ -1,6 +1,9 @@
 import { useState, useRef } from "react";
+import useTasks from "../../useTasks";
 
 export default function AddTask() {
+
+    const { addTask } = useTasks()
 
     const [title, setTitle] = useState("");
     const descriptionRef = useRef();
@@ -12,6 +15,7 @@ export default function AddTask() {
             alert("Compila tutti i campi!")
             return
         }
+        addTask(title,descriptionRef.current.value,statusRef.current.value)
         console.log("title", title);
         console.log("description", descriptionRef.current.value);
         console.log("status", statusRef.current.value);
@@ -41,7 +45,7 @@ export default function AddTask() {
                 <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
                 <textarea name="" id="" ref={descriptionRef}></textarea>
                 <select name="" id="" ref={statusRef}>
-                    <option value="To Do">To Do</option>
+                    <option value="To do">To Do</option>
                     <option value="Doing">Doing</option>
                     <option value="Done">Done</option>
                 </select>
