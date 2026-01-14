@@ -21,15 +21,28 @@ function useTasks() {
 
         console.log(newTask);
 
-        axios.post(`${import.meta.env.VITE_API_URL}/tasks`, newTask, { headers: { 'Content-Type': 'application/json' } })
-            .then(() => {
-                const result = { success: true, task: newTask }
-                console.log(result)
-            })
-            .catch((err) => console.log({ success: false, message: "Messaggio di errore" }))
+        try {
+            const response = await axios.post(
+                `${import.meta.env.VITE_API_URL}/tasks`,
+                newTask,
+                {
+                    headers: { "Content-Type": "application/json" },
+                }
+            );
 
+            const { success, data, message } = response.data;
+
+            if (!success) {
+                throw new Error(message);
+            }
+
+            setTasks(prev => [...prev, data]);
+            return data;
+        } catch (err) {
+            console.error(err);
+            throw err;
+        }
     }
-
     function removeTask() {
 
     }
