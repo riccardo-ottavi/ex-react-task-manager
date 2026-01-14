@@ -8,7 +8,7 @@
 width: 800px;
 }
 
-.card{
+.row{
   height: 80px;
   border: 1px solid black;
   display: flex;
