@@ -15,16 +15,23 @@ export default function AddTask() {
             alert("Compila tutti i campi!")
             return
         }
-        addTask(title,descriptionRef.current.value,statusRef.current.value)
-        console.log("title", title);
-        console.log("description", descriptionRef.current.value);
-        console.log("status", statusRef.current.value);
+        try {
+            addTask(title, descriptionRef.current.value, statusRef.current.value)
+            console.log("title", title);
+            console.log("description", descriptionRef.current.value);
+            console.log("status", statusRef.current.value);
+
+            alert("Task inserita con successo ✅");
+            setTitle(""); 
+        }catch(err) {
+            alert(err.message)
+        }
     }
 
     function isTitleValid(title) {
         const symbols = "!@#$%,.^&*()-_=\\<>?/'`~+[]{}|;:";
 
-        if(title.length === 0){
+        if (title.length === 0) {
             return false
         }
 
