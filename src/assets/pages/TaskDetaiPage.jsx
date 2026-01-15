@@ -1,10 +1,15 @@
 import { useParams } from "react-router-dom";
 import { useGlobal } from "../../contexts/GlobalContext";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
+import Modal from "../components/Modal";
 
 export default function TaskDetailPage() {
   const { id } = useParams();
   const { tasks, removeTask } = useGlobal();
+
+  const [show, setShow] = useState(false)
   
   // hook navigazione
   const navigate = useNavigate(); 
@@ -28,7 +33,14 @@ export default function TaskDetailPage() {
       <p>{task?.description}</p>
       <p>{task?.status}</p>
       <p>{task?.createdAt}</p>
-      <button onClick={handleRemove}>Elimina Task</button>
+      <button onClick={() => setShow(true)}>Elimina Task</button>
+      <Modal 
+        title={"Remove task?"}
+        content={"Se confermi, la task verrà rimossa definitivamente."}
+        show={show}
+        onClose={() => setShow(false)}
+        onConfirm={handleRemove}
+      />
     </div>
   );
 }
