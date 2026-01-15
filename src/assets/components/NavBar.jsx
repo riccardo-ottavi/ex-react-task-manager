@@ -4,12 +4,12 @@ export default function Navbar(){
     return(
         <nav>
             <NavLink
-                to={"/"}
+                to={"/tasks"}
             >
                 Lista
             </NavLink>
             <NavLink
-                to={"/new"}
+                to={"/new-task"}
             >
                 Aggiungi
             </NavLink>
