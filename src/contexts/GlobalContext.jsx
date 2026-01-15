@@ -1,11 +1,14 @@
-import { createContext, useEffect, useState, useContext } from "react";
-import axios from "axios";
+import { createContext, useContext } from "react";
 import useTasks from '../useTasks'
 
+//crea un contenitore vuoto con scope globale (verrà poi popolato dal provider)
 const GlobalContext = createContext();
 
+//componente wrapper per dare accesso al context ai children
 function ContextProvider({ children }){
     
+
+    //attivazione custom hook recuperando funzioni gestione tasks
     const {
     tasks,
     getTasks,
@@ -24,6 +27,7 @@ function ContextProvider({ children }){
 
 }
 
+//scorciatoia per accedere al context
 const useGlobal = () => {
   return useContext(GlobalContext);
 };

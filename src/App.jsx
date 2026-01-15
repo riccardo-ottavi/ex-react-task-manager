@@ -3,8 +3,7 @@ import './App.css'
 import TaskListPage from './assets/pages/TaskListPage.jsx'
 import AddTaskPage from './assets/pages/AddTaskPage.jsx'
 import Navbar from './assets/components/NavBar'
-import { useContext } from 'react'
-import { ContextProvider, useGlobal, GlobalContext } from "./contexts/GlobalContext.jsx";
+import { ContextProvider } from "./contexts/GlobalContext.jsx";
 
 function App() {
 
