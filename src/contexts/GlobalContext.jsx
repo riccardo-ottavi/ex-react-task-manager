@@ -20,7 +20,15 @@ function ContextProvider({ children }){
   
 
     return (
-    <GlobalContext.Provider value={{ tasks, getTasks }}>
+    <GlobalContext.Provider
+      value={{
+        tasks,
+        getTasks,
+        addTask,
+        removeTask, 
+        updateTask,
+      }}
+    >
       {children}
     </GlobalContext.Provider>
   );

@@ -13,7 +13,6 @@ function useTasks() {
 
     //aggiungi task
     async function addTask(taskTitle, taskDesc, taskStatus) {
-
         //costruzione oggetto 
         const newTask = {
             title: taskTitle,
@@ -49,9 +48,26 @@ function useTasks() {
             throw err;
         }
     }
-    function removeTask() {
+    async function removeTask(taskId) {
+  try {
+    const response = await axios.delete(
+      `${import.meta.env.VITE_API_URL}/tasks/${taskId}`
+    );
 
+    const { success, message } = response.data;
+
+    if (!success) {
+      throw new Error(message || "Errore nella rimozione della task");
     }
+
+    setTasks(prev => prev.filter(t => t.id !== taskId));
+
+    return taskId;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+}
 
     function updateTask() {
 
@@ -63,7 +79,7 @@ function useTasks() {
         getTasks();
     }, [])
 
-    
+
     return {
         tasks,
         getTasks,
