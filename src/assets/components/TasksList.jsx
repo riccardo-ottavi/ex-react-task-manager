@@ -8,6 +8,7 @@ export default function TaskList() {
 
     const [sortBy, setSortBy] = useState("createdAt");
     const [sortOrder, setSortOrder] = useState(1);
+    const [quary, setQuary] = useState("");
 
 
     function handleSort(column) {
@@ -71,8 +72,14 @@ export default function TaskList() {
         return tasksCopy;
     }, [tasks, sortBy, sortOrder]);
 
+    function handleQuary(e){
+        setQuary(e.target.value)
+        console.log(quary)
+    }
+
     return (
         <div className="container">
+            <input type="text" placeholder={"Cerca Task"} onChange={handleQuary} value={quary} />
             <div className="row">
                 {/*promemoria: Fai refactoring usando i tag giusti */}
                 <span onClick={() => handleSort("title")}>Titolo</span>
