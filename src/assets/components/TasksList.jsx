@@ -23,12 +23,16 @@ export default function TaskList() {
     //algoritmo ordinamento tasks
     const sortedTasks = useMemo(() => {
        
+
         const statusOrder = ["To do", "Doing", "Done"];
 
         const tasksCopy = [...tasks];
 
+        const filteredTasks = tasksCopy.filter((t) => t.title.toLowerCase().includes(quary) ||t.description.toLowerCase().includes(quary))
+
+
         // Ordinamento
-        tasksCopy.sort((taskA, taskB) => {
+        filteredTasks.sort((taskA, taskB) => {
             let result = 0; 
 
             if (sortBy === "title") {
@@ -69,8 +73,8 @@ export default function TaskList() {
             return result * sortOrder;
         });
 
-        return tasksCopy;
-    }, [tasks, sortBy, sortOrder]);
+        return filteredTasks;
+    }, [tasks, sortBy, sortOrder, quary]);
 
     function handleQuary(e){
         setQuary(e.target.value)
