@@ -1,10 +1,13 @@
 import { useGlobal } from "../../contexts/GlobalContext";
 import TaskRow from "./TaskRow";
 import { Link } from "react-router-dom";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 
 export default function TaskList() {
     const { tasks } = useGlobal();
+
+    const debounceTimeoutRef = useRef(null);
+
 
     const [sortBy, setSortBy] = useState("createdAt");
     const [sortOrder, setSortOrder] = useState(1);
@@ -20,20 +23,32 @@ export default function TaskList() {
         }
     }
 
+    const debouncedSearch = useCallback((value) => {
+
+        if (debounceTimeoutRef.current) {
+            clearTimeout(debounceTimeoutRef.current);
+        }
+
+        debounceTimeoutRef.current = setTimeout(() => {
+            setQuary(value);
+        }, 400);
+
+    }, []);
+
     //algoritmo ordinamento tasks
     const sortedTasks = useMemo(() => {
-       
+
 
         const statusOrder = ["To do", "Doing", "Done"];
 
         const tasksCopy = [...tasks];
 
-        const filteredTasks = tasksCopy.filter((t) => t.title.toLowerCase().includes(quary) ||t.description.toLowerCase().includes(quary))
+        const filteredTasks = tasksCopy.filter((t) => t.title.toLowerCase().includes(quary) || t.description.toLowerCase().includes(quary))
 
 
         // Ordinamento
         filteredTasks.sort((taskA, taskB) => {
-            let result = 0; 
+            let result = 0;
 
             if (sortBy === "title") {
 
@@ -57,7 +72,7 @@ export default function TaskList() {
                     result = 0;
                 }
             } else if (sortBy === "createdAt") {
-        
+
                 const timeA = new Date(taskA.createdAt).getTime();
                 const timeB = new Date(taskB.createdAt).getTime();
 
@@ -76,14 +91,14 @@ export default function TaskList() {
         return filteredTasks;
     }, [tasks, sortBy, sortOrder, quary]);
 
-    function handleQuary(e){
+    function handleQuary(e) {
         setQuary(e.target.value)
         console.log(quary)
     }
 
     return (
         <div className="container">
-            <input type="text" placeholder={"Cerca Task"} onChange={handleQuary} value={quary} />
+            <input type="text" placeholder={"Cerca Task"} onChange={(e) => debouncedSearch(e.target.value)} />
             <div className="row">
                 {/*promemoria: Fai refactoring usando i tag giusti */}
                 <span onClick={() => handleSort("title")}>Titolo</span>
