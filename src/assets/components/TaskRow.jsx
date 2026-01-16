@@ -15,7 +15,7 @@ const TaskRow = React.memo(({ task }) => {
       color: "#065f46",
     },
   };
-
+//promemoria: Fai refactoring usando i tag giusti
   return (
     <div className="row">
       <span>{task.title}</span>
