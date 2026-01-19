@@ -47,7 +47,7 @@ export default function AddTask() {
 
     return (
         <div className="container">
-            <h1>Sono la pagina Add Task</h1>
+            <h2>Aggiungi nuova task</h2>
             <form action="" onSubmit={handleSubmit}>
                 <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
                 <textarea name="" id="" ref={descriptionRef}></textarea>
