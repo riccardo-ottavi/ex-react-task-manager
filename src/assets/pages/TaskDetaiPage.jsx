@@ -29,8 +29,6 @@ export default function TaskDetailPage() {
         } catch (err) {
             alert(err)
         }
-
-
     }
 
     return (

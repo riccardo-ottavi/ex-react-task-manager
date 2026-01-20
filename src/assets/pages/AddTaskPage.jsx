@@ -47,6 +47,7 @@ export default function AddTask() {
 
     return (
         <div className="container">
+            {/* Promemoria: migliora form aggiungendo le label e defaultValue = "To do" */}
             <h2>Aggiungi nuova task</h2>
             <form action="" onSubmit={handleSubmit}>
                 <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />

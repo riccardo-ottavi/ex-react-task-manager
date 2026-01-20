@@ -44,6 +44,7 @@ function useTasks() {
             setTasks(prev => [...prev, data]);
             return data;
         } catch (err) {
+            {/* Promemoria: qua dovrebbe partire piuttosto un alert */}
             console.error(err);
             throw err;
         }
