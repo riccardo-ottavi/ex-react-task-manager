@@ -8,7 +8,6 @@ import EditTaskModal from "../components/EditTaskModal";
 
 export default function TaskDetailPage() {
     const { id } = useParams();
-    {/*Promemoria: aggiungi un h2 se non trova task */}
     const { tasks, removeTask, updateTask } = useGlobal();
 
     const [showRemove, setShowRemove] = useState(false)
@@ -19,6 +18,12 @@ export default function TaskDetailPage() {
     const navigate = useNavigate();
 
     const task = tasks?.find(t => t.id === Number(id));
+
+    if(!task){
+        return(
+            <h2>Task non trovata</h2>
+        )
+    }
 
     function handleRemove() {
         try {
