@@ -19,8 +19,8 @@ export default function TaskDetailPage() {
 
     const task = tasks?.find(t => t.id === Number(id));
 
-    if(!task){
-        return(
+    if (!task) {
+        return (
             <h2>Task non trovata</h2>
         )
     }
@@ -31,7 +31,17 @@ export default function TaskDetailPage() {
             removeTask(task?.id)
             navigate("/tasks")
         } catch (err) {
-            alert(err)
+            alert(err.message)
+        }
+    }
+
+    async function handleUpdate(updatedTask) {
+        try {
+            await updateTask(updatedTask);
+            alert("Task modificata con successo!");
+            setShowEdit(false);
+        } catch (err) {
+            alert("Errore durante la modifica: " + err.message);
         }
     }
 
@@ -54,16 +64,7 @@ export default function TaskDetailPage() {
                 show={showEdit}
                 onClose={() => setShowEdit(false)}
                 task={task}
-                onSave={async (updatedTask) => {
-                    {/*Potrebbe diventare handleUpdate */}
-                    try {
-                        await updateTask(updatedTask);      
-                        alert("Task modificata con successo!");
-                        setShowEdit(false);               
-                    } catch (err) {
-                        alert("Errore durante la modifica: " + err.message); 
-                    }
-                }}
+                onSave={handleUpdate}
             />
         </div>
     );
