@@ -51,16 +51,26 @@ export default function AddTask() {
             {/* Promemoria: migliora form aggiungendo le label e defaultValue = "To do" */}
             <h2>Aggiungi nuova task</h2>
             <form action="" onSubmit={handleSubmit}>
-                <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-                <textarea name="" id="" ref={descriptionRef}></textarea>
-                <select name="" id="" ref={statusRef}>
+                <label>
+                    Titolo Task
+                    <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+                    {!isTitleValid(title) ? "Titolo non valido" : "Titolo valido"}
+                </label>
+                <label>
+                    Descrizione:
+                    <textarea name="" id="" ref={descriptionRef}></textarea>
+                </label>
+                
+                <label>
+                    Status:
+                    <select name="" id="" ref={statusRef}>
                     <option value="To do">To Do</option>
                     <option value="Doing">Doing</option>
                     <option value="Done">Done</option>
                 </select>
+                </label>
                 <button type="submit">Aggiungi Task</button>
-            </form>
-            {!isTitleValid(title) ? "Titolo non valido" : "Titolo valido"}
+            </form>  
         </div>
     )
 }
