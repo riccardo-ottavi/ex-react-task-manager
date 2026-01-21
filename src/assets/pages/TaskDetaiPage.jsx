@@ -9,6 +9,7 @@ import useTasks from "../../useTasks";
 
 export default function TaskDetailPage() {
     const { id } = useParams();
+    {/*Promemoria: risolvi useTask e useGlobal mischiati (o uno o l'altro) e aggiungi un h2 se non trova task */}
     const { tasks, removeTask } = useGlobal();
 
     const [showRemove, setShowRemove] = useState(false)
@@ -51,6 +52,7 @@ export default function TaskDetailPage() {
                 onClose={() => setShowEdit(false)}
                 task={task}
                 onSave={async (updatedTask) => {
+                    {/*Potrebbe diventare handleUpdate */}
                     try {
                         await updateTask(updatedTask);      
                         alert("Task modificata con successo!");

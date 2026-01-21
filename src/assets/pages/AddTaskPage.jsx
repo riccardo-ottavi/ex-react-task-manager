@@ -29,6 +29,7 @@ export default function AddTask() {
     }
 
     function isTitleValid(title) {
+        {/* Promemoria: gestisci invece con useMemo */}
         const symbols = "!@#$%,.^&*()-_=\\<>?/'`~+[]{}|;:";
 
         if (title.length === 0) {

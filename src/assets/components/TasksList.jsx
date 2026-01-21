@@ -6,6 +6,7 @@ import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 export default function TaskList() {
     const { tasks } = useGlobal();
 
+    //non causiamo rerender
     const debounceTimeoutRef = useRef(null);
 
 

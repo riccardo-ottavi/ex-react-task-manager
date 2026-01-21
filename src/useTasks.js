@@ -50,6 +50,7 @@ function useTasks() {
         }
     }
     async function removeTask(taskId) {
+        {/*Potresti non voler wrappare con try/catch */}
         try {
             const response = await axios.delete(
                 `${import.meta.env.VITE_API_URL}/tasks/${taskId}`
