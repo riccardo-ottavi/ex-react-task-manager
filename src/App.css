@@ -21,7 +21,7 @@ body{
   align-items: center;
 }
 
-span{
+.cell{
   margin-left: 10px;
   min-width: 200px;
 }

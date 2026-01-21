@@ -99,21 +99,29 @@ export default function TaskList() {
 
     return (
         <div className="container">
-            <input type="text" placeholder={"Cerca Task"} onChange={(e) => debouncedSearch(e.target.value)} />
-            <div className="row">
-                {/*promemoria: Fai refactoring usando i tag giusti */}
-                <span onClick={() => handleSort("title")}>Titolo</span>
-                <span onClick={() => handleSort("status")}>Status</span>
-                <span onClick={() => handleSort("createdAt")}>Data Creazione</span>
-            </div>
-            {sortedTasks?.map(task => (
-                <Link key={task.id} to={`/tasks/${task.id}`} >
-                    <TaskRow
-                        key={task.id}
-                        task={task}
-                    />
-                </Link>
-            ))}
+            <input
+                type="text"
+                placeholder={"Cerca Task"}
+                onChange={(e) => debouncedSearch(e.target.value)} />
+            <table className="container">
+                <thead>
+                    <tr className="row">
+                        <th className="cell" onClick={() => handleSort("title")}>Titolo</th>
+                        <th className="cell" onClick={() => handleSort("status")}>Status</th>
+                        <th className="cell" onClick={() => handleSort("createdAt")}>Data Creazione</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {sortedTasks?.map(task => (
+                        <Link key={task.id} to={`/tasks/${task.id}`} >
+                            <TaskRow
+                                key={task.id}
+                                task={task}
+                            />
+                        </Link>
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
 }

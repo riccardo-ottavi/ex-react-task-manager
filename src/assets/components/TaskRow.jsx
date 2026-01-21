@@ -15,15 +15,16 @@ const TaskRow = React.memo(({ task }) => {
       color: "#065f46",
     },
   };
-//promemoria: Fai refactoring usando i tag giusti
+
   return (
-    <div className="row">
-      <span>{task.title}</span>
-      <span style={STATUS_STYLE[task.status]}>
+    <tr className="row">
+      <td className="cell">{task.title}</td>
+      <td className="cell" style={STATUS_STYLE[task.status]}>
         {task.status}
-      </span>
-      <span>{task.createdAt}</span>
-    </div>
+      </td>
+      <td className="cell">{task.createdAt}</td>
+    </tr>
+
   );
 });
 
