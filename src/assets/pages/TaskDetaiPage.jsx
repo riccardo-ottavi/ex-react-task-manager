@@ -5,17 +5,15 @@ import { useState } from "react";
 
 import Modal from "../components/Modal";
 import EditTaskModal from "../components/EditTaskModal";
-import useTasks from "../../useTasks";
 
 export default function TaskDetailPage() {
     const { id } = useParams();
-    {/*Promemoria: risolvi useTask e useGlobal mischiati (o uno o l'altro) e aggiungi un h2 se non trova task */}
-    const { tasks, removeTask } = useGlobal();
+    {/*Promemoria: aggiungi un h2 se non trova task */}
+    const { tasks, removeTask, updateTask } = useGlobal();
 
     const [showRemove, setShowRemove] = useState(false)
     const [showEdit, setShowEdit] = useState(false);
 
-    const { updateTask } = useTasks()
 
     // hook navigazione
     const navigate = useNavigate();

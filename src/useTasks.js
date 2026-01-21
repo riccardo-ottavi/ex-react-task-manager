@@ -23,35 +23,29 @@ function useTasks() {
         console.log(newTask);
 
         //chiamata POST con gestione errori
-        try {
-            const response = await axios.post(
-                `${import.meta.env.VITE_API_URL}/tasks`,
-                newTask,
-                //header esplicito
-                {
-                    headers: { "Content-Type": "application/json" },
-                }
-            );
 
-            //destrutturazione risposta del BE
-            const { success, data, message } = response.data;
-
-            if (!success) {
-                throw new Error(message);
+        const response = await axios.post(
+            `${import.meta.env.VITE_API_URL}/tasks`,
+            newTask,
+            //header esplicito
+            {
+                headers: { "Content-Type": "application/json" },
             }
+        );
 
-            //aggiornamento stato (aggiungi task nuova all'arrray)
-            setTasks(prev => [...prev, data]);
-            return data;
-        } catch (err) {
-            {/* Promemoria: qua dovrebbe partire piuttosto un alert */}
-            console.error(err);
-            throw err;
+        //destrutturazione risposta del BE
+        const { success, data, message } = response.data;
+
+        if (!success) {
+            throw new Error(message);
         }
+        //aggiornamento stato (aggiungi task nuova all'arrray)
+        setTasks(prev => [...prev, data]);
+        return data;
+
     }
     async function removeTask(taskId) {
-        {/*Potresti non voler wrappare con try/catch */}
-        try {
+      
             const response = await axios.delete(
                 `${import.meta.env.VITE_API_URL}/tasks/${taskId}`
             );
@@ -65,14 +59,10 @@ function useTasks() {
             setTasks(prev => prev.filter(t => t.id !== taskId));
 
             return taskId;
-        } catch (err) {
-            console.error(err);
-            throw err;
-        }
     }
 
     async function updateTask(updatedTask) {
-        try {
+      
             const response = await axios.put(
                 `${import.meta.env.VITE_API_URL}/tasks/${updatedTask.id}`,
                 updatedTask
@@ -92,15 +82,7 @@ function useTasks() {
             );
 
             return task;
-        } catch (error) {
-            // se l'errore viene dal backend
-            if (error.response?.data?.message) {
-                throw new Error(error.response.data.message);
-            }
 
-            // errore generico
-            throw error;
-        }
     }
 
 

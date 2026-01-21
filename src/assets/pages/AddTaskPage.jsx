@@ -9,6 +9,8 @@ export default function AddTask() {
     const descriptionRef = useRef();
     const statusRef = useRef("To do");
 
+    const symbols = "!@#$%,.^&*()-_=\\<>?/'`~+[]{}|;:";
+
     function handleSubmit(e) {
         e.preventDefault();
         if (title.trim() === "") {
@@ -23,6 +25,8 @@ export default function AddTask() {
 
             alert("Task inserita con successo ✅");
             setTitle("");
+            descriptionRef.current.value = "";
+            statusRef.current.value = "";
         } catch (err) {
             alert(err.message)
         }
@@ -41,8 +45,6 @@ export default function AddTask() {
     }, [title]);
 
     function isTitleValid(title) {
-        {/* Promemoria: gestisci invece con useMemo */ }
-        const symbols = "!@#$%,.^&*()-_=\\<>?/'`~+[]{}|;:";
 
         if (title.length === 0) {
             return false
