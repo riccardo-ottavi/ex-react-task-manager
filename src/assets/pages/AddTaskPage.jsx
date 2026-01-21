@@ -39,8 +39,6 @@ export default function AddTask() {
         for (let i = 0; i < title.length; i++) {
             if (symbols.includes(title[i])) {
                 return false
-            } else if (title[i] === " ") {
-                return false
             }
         }
         return true
@@ -48,7 +46,6 @@ export default function AddTask() {
 
     return (
         <div className="container">
-            {/* Promemoria: migliora form aggiungendo le label e defaultValue = "To do" */}
             <h2>Aggiungi nuova task</h2>
             <form action="" onSubmit={handleSubmit}>
                 <label>
@@ -58,12 +55,17 @@ export default function AddTask() {
                 </label>
                 <label>
                     Descrizione:
-                    <textarea name="" id="" ref={descriptionRef}></textarea>
+                    <textarea 
+                        ref={descriptionRef}
+                    >
+                    </textarea>
                 </label>
-                
                 <label>
                     Status:
-                    <select name="" id="" ref={statusRef}>
+                    <select 
+                        ref={statusRef}
+                        defaultValue={"To do"}
+                    >
                     <option value="To do">To Do</option>
                     <option value="Doing">Doing</option>
                     <option value="Done">Done</option>
