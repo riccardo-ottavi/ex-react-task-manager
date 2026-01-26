@@ -4,10 +4,12 @@ export default function Modal({ title, content, show, onClose, onConfirm, confir
     
     return show && ReactDOM.createPortal(
         <div className="container-modal">
-            <h2>{title}</h2>
-            <span>{content}</span>
-            <button onClick={onClose}>Chiudi</button>
-            <button onClick={onConfirm}>{confirmText}</button>
+            <div className="modal">
+                <h2>{title}</h2>
+                <span>{content}</span>
+                <button onClick={onClose}>Chiudi</button>
+                <button onClick={onConfirm}>{confirmText}</button>
+            </div>
         </div>,
         document.body
     )

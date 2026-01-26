@@ -37,21 +37,21 @@ export default function EditTaskModal({ show, onClose, task, onSave }) {
         <Modal
             title={"Modifica task"}
             content={
-                <div className="container-modal">
-                    <form
-                        ref={editFormRef} onSubmit={handleSubmit}
-                    >
-                        <label>
-                            Titolo:
-                            <input type="text" value={title} placeholder="Titolo Task" onChange={(e) => setTitle(e.target.value)} />
-                        </label>
-                        <label>
-                            Descrizione:
-                            <textarea name="" value={description} id="" onChange={(e) => setDescription(e.target.value)}></textarea>
-                        </label>
-                        <label>
-                            Status:
-                            <select
+
+                <form
+                    ref={editFormRef} onSubmit={handleSubmit}
+                >
+                    <label>
+                        Titolo:
+                        <input type="text" value={title} placeholder="Titolo Task" onChange={(e) => setTitle(e.target.value)} />
+                    </label>
+                    <label>
+                        Descrizione:
+                        <textarea name="" value={description} id="" onChange={(e) => setDescription(e.target.value)}></textarea>
+                    </label>
+                    <label>
+                        Status:
+                        <select
                             value={status}
                             onChange={(e) => setStatus(e.target.value)}
                         >
@@ -59,9 +59,8 @@ export default function EditTaskModal({ show, onClose, task, onSave }) {
                             <option value="Doing">Doing</option>
                             <option value="Done">Done</option>
                         </select>
-                        </label>
-                    </form>
-                </div>}
+                    </label>
+                </form>}
             confirmText={"Salva"}
             onClose={onClose}
             onConfirm={() => editFormRef.current.requestSubmit()}

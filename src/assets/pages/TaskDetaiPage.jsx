@@ -46,7 +46,7 @@ export default function TaskDetailPage() {
     }
 
     return (
-        <div>
+        <div className="task-card">
             <p>{task?.title}</p>
             <p>{task?.description}</p>
             <p>{task?.status}</p>

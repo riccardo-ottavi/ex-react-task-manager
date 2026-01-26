@@ -49,11 +49,31 @@ form{
 
 /*Promemoria: migliora stile*/
 .container-modal{
-  width: 500px;
-  height: 300px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.151);
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+}
+
+.modal {
+  width: 400px;
+  padding: 24px;
+  background-color: white;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.task-card{
+  width: 500px;
+  border: 1px solid black;
+  margin:  0 auto;
 }
