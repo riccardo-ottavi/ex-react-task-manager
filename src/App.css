@@ -46,3 +46,14 @@ form{
   display: flex;
   flex-direction: column;
 }
+
+/*Promemoria: migliora stile*/
+.container-modal{
+  width: 500px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.151);
+}

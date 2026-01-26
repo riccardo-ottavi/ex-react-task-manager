@@ -37,7 +37,7 @@ export default function EditTaskModal({ show, onClose, task, onSave }) {
         <Modal
             title={"Modifica task"}
             content={
-                <div>
+                <div className="container-modal">
                     <form
                         ref={editFormRef} onSubmit={handleSubmit}
                     >
