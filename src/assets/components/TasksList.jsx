@@ -3,6 +3,8 @@ import TaskRow from "./TaskRow";
 import { Link } from "react-router-dom";
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 
+
+//promemoria: potresti estrarre tutta la logica di quary e portarla nella pagina List invece che nel componente
 export default function TaskList() {
     const { tasks } = useGlobal();
 
@@ -38,7 +40,6 @@ export default function TaskList() {
 
     //algoritmo ordinamento tasks
     const sortedTasks = useMemo(() => {
-
 
         const statusOrder = ["To do", "Doing", "Done"];
 

@@ -20,10 +20,7 @@ function useTasks() {
             status: taskStatus
         }
 
-        console.log(newTask);
-
         //chiamata POST con gestione errori
-
         const response = await axios.post(
             `${import.meta.env.VITE_API_URL}/tasks`,
             newTask,
@@ -44,48 +41,47 @@ function useTasks() {
         return data;
 
     }
+
     async function removeTask(taskId) {
-      
-            const response = await axios.delete(
-                `${import.meta.env.VITE_API_URL}/tasks/${taskId}`
-            );
 
-            const { success, message } = response.data;
+        const response = await axios.delete(
+            `${import.meta.env.VITE_API_URL}/tasks/${taskId}`
+        );
 
-            if (!success) {
-                throw new Error(message || "Errore nella rimozione della task");
-            }
+        const { success, message } = response.data;
 
-            setTasks(prev => prev.filter(t => t.id !== taskId));
+        if (!success) {
+            throw new Error(message || "Errore nella rimozione della task");
+        }
 
-            return taskId;
+        setTasks(prev => prev.filter(t => t.id !== taskId));
+
+        return taskId;
     }
 
     async function updateTask(updatedTask) {
-      
-            const response = await axios.put(
-                `${import.meta.env.VITE_API_URL}/tasks/${updatedTask.id}`,
-                updatedTask
-            );
 
-            const { success, task, message } = response.data;
+        const response = await axios.put(
+            `${import.meta.env.VITE_API_URL}/tasks/${updatedTask.id}`,
+            updatedTask
+        );
 
-            if (!success) {
-                throw new Error(message);
-            }
+        const { success, task, message } = response.data;
 
-            // aggiorna la task nello stato globale
-            setTasks((prevTasks) =>
-                prevTasks.map((t) =>
-                    t.id === task.id ? task : t
-                )
-            );
+        if (!success) {
+            throw new Error(message);
+        }
 
-            return task;
+        // aggiorna la task nello stato globale
+        setTasks((prevTasks) =>
+            prevTasks.map((t) =>
+                t.id === task.id ? task : t
+            )
+        );
+
+        return task;
 
     }
-
-
 
     //fetch automatico all'avvio
     useEffect(() => {

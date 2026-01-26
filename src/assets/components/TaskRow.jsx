@@ -1,6 +1,7 @@
 import React from "react";
 
 const TaskRow = React.memo(({ task }) => {
+  //mappo status e colore
   const STATUS_STYLE = {
     "To do": {
       backgroundColor: "#fef3c7",
@@ -22,7 +23,7 @@ const TaskRow = React.memo(({ task }) => {
       <td className="cell" style={STATUS_STYLE[task.status]}>
         {task.status}
       </td>
-      <td className="cell">{task.createdAt}</td>
+      <td className="cell">{new Date(task.createdAt).toLocaleDateString()}</td>
     </tr>
 
   );
