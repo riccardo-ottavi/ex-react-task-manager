@@ -1,21 +1,7 @@
 import React from "react";
+import { STATUS_STYLE } from "../../constants";
 
 const TaskRow = React.memo(({ task }) => {
-  //mappo status e colore
-  const STATUS_STYLE = {
-    "To do": {
-      backgroundColor: "#fef3c7",
-      color: "#92400e",
-    },
-    Doing: {
-      backgroundColor: "#dbeafe",
-      color: "#1e40af",
-    },
-    Done: {
-      backgroundColor: "#d1fae5",
-      color: "#065f46",
-    },
-  };
 
   return (
     <tr className="row">

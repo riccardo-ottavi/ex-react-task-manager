@@ -2,28 +2,11 @@ import { useParams } from "react-router-dom";
 import { useGlobal } from "../../contexts/GlobalContext";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-
+import { STATUS_STYLE} from "../../constants";
 import Modal from "../components/Modal";
 import EditTaskModal from "../components/EditTaskModal";
 
 export default function TaskDetailPage() {
-
-    //promemoria: evita ripetimento logica assegnamento colori
-    const STATUS_STYLE = {
-    "To do": {
-      backgroundColor: "#fef3c7",
-      color: "#92400e",
-    },
-    Doing: {
-      backgroundColor: "#dbeafe",
-      color: "#1e40af",
-    },
-    Done: {
-      backgroundColor: "#d1fae5",
-      color: "#065f46",
-    },
-  };
-
     const { id } = useParams();
     const { tasks, removeTask, updateTask } = useGlobal();
 
