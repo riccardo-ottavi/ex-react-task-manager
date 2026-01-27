@@ -1,14 +1,13 @@
 import { useGlobal } from "../../contexts/GlobalContext";
 import TaskRow from "./TaskRow";
 import { Link } from "react-router-dom";
-import { useState, useEffect, useMemo, useCallback, useRef } from "react";
+import { useState, useMemo, useCallback, useRef } from "react";
 
 
 //promemoria: potresti estrarre tutta la logica di quary e portarla nella pagina List invece che nel componente
 export default function TaskList() {
     const { tasks } = useGlobal();
 
-    //non causiamo rerender
     const debounceTimeoutRef = useRef(null);
 
 
@@ -47,22 +46,15 @@ export default function TaskList() {
 
         const filteredTasks = tasksCopy.filter((t) => t.title.toLowerCase().includes(quary) || t.description.toLowerCase().includes(quary))
 
-
         // Ordinamento
         filteredTasks.sort((taskA, taskB) => {
             let result = 0;
 
             if (sortBy === "title") {
 
-                if (taskA.title < taskB.title) {
-                    result = -1;
-                } else if (taskA.title > taskB.title) {
-                    result = 1;
-                } else {
-                    result = 0;
-                }
+                result = taskA.title.localeCompare(taskB.title)
             } else if (sortBy === "status") {
-
+                //confronto gli indici in base a statusOrder
                 const indexA = statusOrder.indexOf(taskA.status);
                 const indexB = statusOrder.indexOf(taskB.status);
 
@@ -78,13 +70,7 @@ export default function TaskList() {
                 const timeA = new Date(taskA.createdAt).getTime();
                 const timeB = new Date(taskB.createdAt).getTime();
 
-                if (timeA < timeB) {
-                    result = -1;
-                } else if (timeA > timeB) {
-                    result = 1;
-                } else {
-                    result = 0;
-                }
+                result = timeA - timeB
             }
 
             return result * sortOrder;
