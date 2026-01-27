@@ -10,39 +10,68 @@ margin: 0 auto;
 }
 
 body{
-  background-color: rgb(252, 246, 237);
+  background-color: rgba(250, 244, 244, 0.733);
+  font-size: 15px;
+  font-family: Helvetica, Arial, sans-serif;
+
 }
 
 .row{
   height: 80px;
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.425);
   display: flex;
   gap: 50px;
   align-items: center;
 }
 
+button{
+  min-width: 100px;
+  max-width: 250px;
+}
+
 .cell{
   margin-left: 10px;
   min-width: 200px;
+  text-align: center;
 }
+
 
 a{
   text-decoration: none;
   color: black;
 }
 
+
 .navbar{
   display: flex;
-  font-size: 30px;
+  font-size: 25px;
   width: 100%;
   height: 80px;
-  background-color: rgb(204, 204, 3);
+  background-color: rgb(224, 224, 57);
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
 }
 
+nav{
+  display: flex;
+  gap: 20px;
+}
+
+label{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+textarea{
+  width: 100%;
+  height: 250px;
+}
+
 form{
+  margin-top: 30px;
+  gap: 15px;
   display: flex;
   flex-direction: column;
 }
@@ -70,10 +99,22 @@ form{
   flex-direction: column;
   gap: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  align-items: center;
 }
 
 .task-card{
   width: 500px;
-  border: 1px solid black;
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.356);
   margin:  0 auto;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.status-label{
+  border: rgba(0, 0, 0, 0.082) 1px solid;
+  border-radius: 33px;
 }

@@ -35,7 +35,7 @@ export default function AddTask() {
     //use memo calcola l’errore del titolo solo quando cambia title
     const taskTitleError = useMemo(() => {
         if (title.trim().length === 0) {
-            return "Il titolo è obbligatorio";
+            return "Il titolo è obbligatorio!";
         }
 
         if (!isTitleValid(title)) {
@@ -61,10 +61,10 @@ export default function AddTask() {
             <h2>Aggiungi nuova task</h2>
             <form onSubmit={handleSubmit}>
                 <label>
-                    Titolo Task
+                    Titolo Task: 
                     <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
                     {taskTitleError &&
-                        <p>{taskTitleError}</p>
+                        <p style={{"color":"red"}}>{taskTitleError}</p>
                     }
                 </label>
                 <label>

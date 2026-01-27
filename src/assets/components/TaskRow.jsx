@@ -20,7 +20,7 @@ const TaskRow = React.memo(({ task }) => {
   return (
     <tr className="row">
       <td className="cell">{task.title}</td>
-      <td className="cell" style={STATUS_STYLE[task.status]}>
+      <td className="cell status-label" style={STATUS_STYLE[task.status]}>
         {task.status}
       </td>
       <td className="cell">{new Date(task.createdAt).toLocaleDateString()}</td>

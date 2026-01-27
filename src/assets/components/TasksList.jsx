@@ -93,10 +93,6 @@ export default function TaskList() {
         return filteredTasks;
     }, [tasks, sortBy, sortOrder, quary]);
 
-    function handleQuary(e) {
-        setQuary(e.target.value)
-        console.log(quary)
-    }
 
     return (
         <div className="container">

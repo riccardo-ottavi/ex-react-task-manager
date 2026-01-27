@@ -7,6 +7,23 @@ import Modal from "../components/Modal";
 import EditTaskModal from "../components/EditTaskModal";
 
 export default function TaskDetailPage() {
+
+    //promemoria: evita ripetimento logica assegnamento colori
+    const STATUS_STYLE = {
+    "To do": {
+      backgroundColor: "#fef3c7",
+      color: "#92400e",
+    },
+    Doing: {
+      backgroundColor: "#dbeafe",
+      color: "#1e40af",
+    },
+    Done: {
+      backgroundColor: "#d1fae5",
+      color: "#065f46",
+    },
+  };
+
     const { id } = useParams();
     const { tasks, removeTask, updateTask } = useGlobal();
 
@@ -47,14 +64,14 @@ export default function TaskDetailPage() {
 
     return (
         <div className="task-card">
-            <p>{task?.title}</p>
-            <p>{task?.description}</p>
-            <p>{task?.status}</p>
-            <p>{new Date (task?.createdAt).toLocaleDateString()}</p>
+            <p>Titolo: {task?.title}</p>
+            <p>Descrizione: {task?.description}</p>
+            <p className="status-label cell" style={STATUS_STYLE[task.status]}>{task?.status}</p>
+            <p>Aggiunta il: {new Date (task?.createdAt).toLocaleDateString()}</p>
             <button onClick={() => setShowRemove(true)}>Elimina Task</button>
             <button onClick={() => setShowEdit(true)}>Aggiorna Task</button>
             <Modal
-                title={"Remove task?"}
+                title={"Cancella task"}
                 content={"Se confermi, la task verrà rimossa definitivamente."}
                 show={showRemove}
                 onClose={() => setShowRemove(false)}
