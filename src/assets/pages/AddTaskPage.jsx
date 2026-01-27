@@ -32,6 +32,7 @@ export default function AddTask() {
         }
     }
 
+    //use memo calcola l’errore del titolo solo quando cambia title
     const taskTitleError = useMemo(() => {
         if (title.trim().length === 0) {
             return "Il titolo è obbligatorio";
@@ -45,23 +46,20 @@ export default function AddTask() {
     }, [title]);
 
     function isTitleValid(title) {
-
         if (title.length === 0) {
             return false
         }
 
-        for (let i = 0; i < title.length; i++) {
-            if (symbols.includes(title[i])) {
-                return false
-            }
-        }
+        //spezzetto il titolo in caratteri e confronto
+        if([...title].some((char) => symbols.includes(char))) return false
+        
         return true
     }
 
     return (
         <div className="container">
             <h2>Aggiungi nuova task</h2>
-            <form action="" onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <label>
                     Titolo Task
                     <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />

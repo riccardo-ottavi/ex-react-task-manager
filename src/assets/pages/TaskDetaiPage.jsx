@@ -50,7 +50,7 @@ export default function TaskDetailPage() {
             <p>{task?.title}</p>
             <p>{task?.description}</p>
             <p>{task?.status}</p>
-            <p>{task?.createdAt}</p>
+            <p>{new Date (task?.createdAt).toLocaleDateString()}</p>
             <button onClick={() => setShowRemove(true)}>Elimina Task</button>
             <button onClick={() => setShowEdit(true)}>Aggiorna Task</button>
             <Modal
