@@ -8,12 +8,20 @@ import { useState, useMemo, useCallback, useRef } from "react";
 export default function TaskList() {
     const { tasks } = useGlobal();
 
-    const debounceTimeoutRef = useRef(null);
-
-
     const [sortBy, setSortBy] = useState("createdAt");
     const [sortOrder, setSortOrder] = useState(1);
     const [quary, setQuary] = useState("");
+
+    function debounce(callback, delay) {
+        let timer;
+
+        return (value) => {
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                callback(value);
+            }, delay);
+        };
+    }
 
 
     function handleSort(column) {
@@ -25,23 +33,16 @@ export default function TaskList() {
         }
     }
 
-    const debouncedSearch = useCallback((value) => {
-
-        if (debounceTimeoutRef.current) {
-            clearTimeout(debounceTimeoutRef.current);
-        }
-
-        debounceTimeoutRef.current = setTimeout(() => {
-            setQuary(value);
-        }, 400);
-
-    }, []);
+    const debouncedSearch = useCallback(
+        debounce(setQuary, 500) 
+    ,[]);
 
     //algoritmo ordinamento tasks
     const sortedTasks = useMemo(() => {
 
         const statusOrder = ["To do", "Doing", "Done"];
 
+        //mi serve una copia perché sort modifica direttamente l'array
         const tasksCopy = [...tasks];
 
         const filteredTasks = tasksCopy.filter((t) => t.title.toLowerCase().includes(quary) || t.description.toLowerCase().includes(quary))

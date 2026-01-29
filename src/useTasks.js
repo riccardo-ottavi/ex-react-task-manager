@@ -43,7 +43,6 @@ function useTasks() {
     }
 
     async function removeTask(taskId) {
-
         const response = await axios.delete(
             `${import.meta.env.VITE_API_URL}/tasks/${taskId}`
         );
@@ -60,7 +59,6 @@ function useTasks() {
     }
 
     async function updateTask(updatedTask) {
-
         const response = await axios.put(
             `${import.meta.env.VITE_API_URL}/tasks/${updatedTask.id}`,
             updatedTask
@@ -80,14 +78,12 @@ function useTasks() {
         );
 
         return task;
-
     }
 
     //fetch automatico all'avvio
     useEffect(() => {
         getTasks();
     }, [])
-
 
     return {
         tasks,
